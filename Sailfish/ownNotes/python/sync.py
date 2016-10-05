@@ -109,6 +109,11 @@ class localClient(object):
             pass
 
         return index
+        
+    def move(self, relpathfrom, relpathto):
+        pathfrom = self.get_abspath(relpathfrom)
+        pathto = self.get_abspath(relpathto)
+        os.rename(pathfrom, pathto)
 
     def rm(self, relpath):
         path = self.get_abspath(relpath)
@@ -520,15 +525,15 @@ class Sync(object):
 
         conflict_path = os.path.splitext(relpath)[0] + '.Conflict.txt'  # FIXME
 
-        ldc.rename(relpath, conflict_path)
+        ldc.move(relpath, conflict_path)
         self._download(wdc, ldc, relpath)
 
         # Test if it s a real conflict
-        if ldc.getsize(relpath) == 0:  # Test size to avoid ownCloud Bug
-            ldc.remove(relpath)
-            ldc.rename(conflict_path, relpath)
+        if ldc.get_size(relpath) == 0:  # Test size to avoid ownCloud Bug
+            ldc.rm(relpath)
+            ldc.move(conflict_path, relpath)
         elif ldc.get_md5(relpath) == ldc.get_md5(conflict_path):
-            ldc.remove(conflict_path)
+            ldc.rm(conflict_path)
         else:
             self._upload(wdc, ldc, conflict_path)
 
