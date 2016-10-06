@@ -363,7 +363,7 @@ class Sync(object):
             return True
 
     def launch_push_note(self, path):
-        self.thread = threading.Thread(target=self._wpushNote, args=[path, ])
+        self.thread = threading.Thread(target=self.push_note, args=[path, ])
         self.thread.start()
         return True
 

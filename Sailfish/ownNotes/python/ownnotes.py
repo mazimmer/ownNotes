@@ -207,13 +207,11 @@ def saveNote(filepath, data, colorized=True):
     with open(filepath, 'w', encoding='utf-8') as fh:
         fh.write(_content)
 
-    # Note pushing removed to avoid the app locking up
-    # Perhaps this should be run in a different thread
-    #try:
-    #    relpath = os.path.join(category, _getValidFilename(_title.strip()) + '.txt')
-    #    sync.push_note(relpath)
-    #except Exception as err:
-    #    logger.Logger().logger.error(str(err))
+    try:
+        relpath = os.path.join(category, _getValidFilename(_title.strip()) + '.txt')
+        sync.launch_push_note(relpath)
+    except Exception as err:
+        logger.Logger().logger.error(str(err))
 
     return filepath
 
