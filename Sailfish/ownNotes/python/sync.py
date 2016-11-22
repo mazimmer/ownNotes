@@ -348,9 +348,9 @@ class Sync(object):
             debug=settings.get('WebDav', 'debug'))
 
         # TODO
-        # Duplicate, launched in qml
-        #if settings.get('WebDav', 'startupsync') is True:
-        #    self.launch()
+        # Duplicate, launched in qml - but qml launch doesn't seem to work...
+        if settings.get('WebDav', 'startupsync') is True:
+            self.launch()
 
     def launch(self):
         ''' Sync the notes in a thread'''

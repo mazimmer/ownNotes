@@ -150,7 +150,18 @@ CoverBackground {
             }
         }
     }
-
+	
+    Timer {
+       id: autoTimer
+       interval: 1200000
+       running: true
+       repeat: true
+       onTriggered: {
+       if (sync.running === false)
+          sync.launch()
+       	}
+    }
+	
     function updateCoverText(offset) {
         var current = cover.current;
         current = pyNotes.nextNoteFile(current, offset);

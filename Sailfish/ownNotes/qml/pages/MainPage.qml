@@ -252,7 +252,18 @@ Page {
         }
 
     }
-
+	
+    Timer {
+       id: autoTimer
+       interval: 1200000
+       running: true
+       repeat: true
+       onTriggered: {
+       if (sync.running === false)
+          sync.launch()
+       	}
+    }
+	
     Component {
         id: categoryPage
 
