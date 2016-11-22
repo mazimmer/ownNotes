@@ -8,9 +8,16 @@
 #         - icon definition filename in desktop file must be changed
 TARGET = ownNotes
 
-INCLUDEPATH += $$system(python3-config --includes)
-QMAKE_CXXFLAGS += $$system(python3-config --includes)
-QMAKE_LIBS += $$system(python3-config --libs)
+
+INCLUDEPATH += $$system(/usr/local/bin/python3-config --includes)
+QMAKE_CXXFLAGS += $$system(/usr/local/bin/python3-config --includes)
+QMAKE_LIBS += $$system(/usr/local/bin/python3-config --libs)
+
+#INCLUDEPATH += "/usr/local/bin/python3-config --includes"
+#QMAKE_CXXFLAGS += "/usr/local/bin/python3-config --includes"
+#QMAKE_LIBS += "/usr/local/bin/python3-config --libs"
+
+
 
 CONFIG += sailfishapp
 
